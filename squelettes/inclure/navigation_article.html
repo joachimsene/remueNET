@@ -1,0 +1,12 @@
+<div class="ariane">
+	<ul>
+		<li>
+			<a href="#URL_SITE_SPIP"><:accueil:></a>
+		</li>
+		<BOUCLE_ariane(HIERARCHIE){id_article}>
+		<li>
+			<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</li>
+		</BOUCLE_ariane>
+	</ul>
+</div>

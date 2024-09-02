@@ -1,0 +1,23 @@
+<B_BLOG_THEMES>
+<li>
+		  						<a href="#"><:pages_thematiques:></a>
+		  						<ul class="sous-menu">
+								<BOUCLE_BLOG_THEMES(RUBRIQUES) {id_parent=177} {!par date} {0,5}>
+			  						<li [ class="(#EXPOSE)"]>
+				  						<a href="#URL_RUBRIQUE">#TITRE</a>
+				  					</li>
+								</BOUCLE_BLOG_THEMES>
+<B_articles_test>			
+								<BOUCLE_invisibles(ARTICLES) {id_rubrique=177} {titre_mot in invisible, pas_en_une}{doublons}>
+								</BOUCLE_invisibles>
+								<BOUCLE_THEMES(ARTICLES) {id_rubrique=177} {!par date}{doublons}>
+			  						<li [ class="(#EXPOSE)"]>
+				  						<a href="#URL_RUBRIQUE">#TITRE</a>
+				  					</li>
+								</BOUCLE_THEMES>
+<BOUCLE_articles_test(ARTICLES) {id_rubrique}>
+</BOUCLE_articles_test>
+									<li><a href="#URL_RUBRIQUE{177}" class="toutes"><:toutes_les_pages_thematiques:></a></li>
+			  					</ul>
+		  					</li>
+</B_BLOG_THEMES>

@@ -1,0 +1,17 @@
+<li class="auteurs_idf">
+		<a href="#"><:pages_auteurs_idf:></a>
+		<ul class="sous-menu">
+	<BOUCLE_alphabt(GROUPES_MOTS){par titre}{titre LIKE idf_auteurs_%}>
+	<li class="li_alphabet"><a 
+		href="#">[(#TITRE|replace{idf_auteurs_\d*})]</a>
+		<ul class="sous-menu alphabet">
+			<div class="inner">
+				<B_auteurs><BOUCLE_auteurs(MOTS) {par descriptif, titre}
+							{id_groupe}><li><BOUCLE_larub_idf(RUBRIQUES){id_mot}><a href="#URL_RUBRIQUE">#_auteurs:TITRE</a></li>
+								</BOUCLE_larub_idf></BOUCLE_auteurs>
+				</B_auteurs>
+			</div>
+		</ul>
+	</li>
+</BOUCLE_alphabt>
+</ul></li>

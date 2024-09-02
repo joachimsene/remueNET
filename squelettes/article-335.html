@@ -1,0 +1,133 @@
+<BOUCLE_PRINCIPALE(ARTICLES){id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+
+[<meta property="og:image" content="(#LOGO_ARTICLE|abs_url|extraire_attribut{src})" />]
+[<meta property="og:description" content="(#INTRODUCTION|attribut_html)" />] 
+
+<meta name="twitter:title" content="[(#TITRE|couper{80}|textebrut)]">
+[<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@remue_net">
+<meta property="twitter:image" content="(#LOGO_ARTICLE|abs_url|extraire_attribut{src})" />]
+[<meta property="twitter:description" content="(#INTRODUCTION|attribut_html)" />] 
+
+<INCLURE{fond=inclure/head} />
+<INCLURE{fond=inclure/head_gal} />
+</head>
+  <body class="article_idf">
+  <div id="main" class="grid-x">
+  		<div id="header" class="cell small-12 large-2">
+  			<div class="logo">
+  				<a href="#URL_SITE_SPIP" id="type"><span class="fixe">r</span><span class="write"></span></a>
+  				<div class="hamburger hide-for-large"></div>
+  			</div>
+			[(#REM) --------------------------------------------------- GAUCHE -------- ]
+			<div class="inner-header">
+				<div class="headerscroll">
+					<div class="idf_titre">
+						<a href="#URL_RUBRIQUE{335}" class="titre">
+							<span>Programme </span>
+							<span>de résidences </span>
+							<span>d'écrivains </span>
+						</a>
+						<a href="https://www.iledefrance.fr/aides-services/programme-regional-de-residences-d-ecrivains" target="_blank" class="logo">
+						</a>
+					</div>
+		  			<div class="main-menu">
+		  				<ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false" data-slide-speed="0">
+							<INCLURE{fond=inclure/blogs_auteurs_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/lieux_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/annees_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/infolettre_idf,env} />
+		  				</ul>
+		  			</div>
+				</div>
+				<INCLURE{fond=inclure/pied,env}/>
+	  		</div>
+  		</div>
+  		<div id="content" class="cell small-12 large-8 large-offset-2 xlarge-6 xlarge-offset-3">
+			<INCLURE{fond=inclure/ariane_idf_tout_art,id_article,env}/>
+  			<div class="titre">
+  				<h1>#TITRE</h1>
+  			</div>
+  			<div class="article_content grid-x grid-margin-x" id="article_content">
+  				<div class="left cell small-12 medium-10">
+					
+					[(#REM) retire le logo si mot-clé spécial no_logo précisé : ]
+					<BOUCLE_ARTICLE_NOLOGO(ARTICLES){id_article}{!titre_mot=no_logo}>
+								#LOGO_ARTICLE
+					</BOUCLE_ARTICLE_NOLOGO>
+
+					<div class="texte">
+						#TEXTE
+						[(#REM) ne pas afficher la date si mot-clé sans_date précisé]
+						<BOUCLE_sansdate(ARTICLES){id_article}{!titre_mot=sans_date}>
+						</BOUCLE_sansdate>
+						[<div class="date">(#DATE|affdate)</div>]
+						</B_sansdate>
+						<//B_sansdate>
+						<INCLURE{fond=inclure/tags_article,id_article,env}/>
+					</div>
+  				</div>
+  				<div class="right cell small-12 medium-2">
+	  					<div class="taille_texte hide-for-small-only">
+							<a href="javascript:void(0);" class="normal">T</a>
+							<a href="javascript:void(0);" class="grand">T<span>+</span></a>
+						</div>
+						<div class="legende"><!--div id="lateral-notes" -->
+							[<div id="notes">(#NOTES)</div>]
+						</div>
+  				</div>
+			</div>
+  		</div>
+  		<div id="sidebar" class="cell small-12 large-2 large-offset-1">
+  			<div class="bloc lireaussi">
+  				<div class="label">
+  					<:lire_aussi:>
+  				</div>
+  				<div class="liste">
+					<INCLURE{fond=inclure/rub_hasard,id_rubrique,id_article,env}/>
+					
+					<BOUCLE_theme_R(RUBRIQUES){id_rubrique}>
+						<BOUCLE_theme_I(MOTS){id_groupe in 41}{id_article}>
+						<B_A_MT>	
+						[(#_theme_I:COMPTEUR_BOUCLE|>={1}|?{'<div class="souslabel">même thème</div>',' '})]
+						
+						<BOUCLE_A_MT(ARTICLES){id_mot}{!id_article}{!titre_mot=invisible}{par hasard}{0,1}>
+							<div class="teaser">
+								<a href="#URL_ARTICLE" class="lien"></a>
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte">
+									#DESCRIPTIF
+								</div>
+							</div>
+						</BOUCLE_A_MT>
+						</BOUCLE_theme_I>
+					</BOUCLE_theme_R>
+
+					<INCLURE{fond=inclure/au_hasard,env}/>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+<INCLURE{fond=inclure/footer} />
+<script>
+    /*Galleria uniqmt ds les articles*/
+	galleria_remueInit("plugins/galleria-1.5.7/");
+</script>
+</body>	
+</body>
+</html>
+</BOUCLE_PRINCIPALE>

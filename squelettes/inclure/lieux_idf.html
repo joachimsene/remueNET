@@ -1,0 +1,17 @@
+<li class="lieux_idf">
+	<a href="#"><:lieux:></a>
+	<ul class="sous-menu">
+<BOUCLE_alphabt(GROUPES_MOTS){par titre}{titre LIKE idf_lieux_%}>
+<li class="li_alphabet"><a 
+	href="#">[(#TITRE|replace{idf_lieux_\d*})]</a>
+	<ul class="sous-menu alphabet">
+		<div class="inner">
+			<B_lieux><BOUCLE_lieux(MOTS) {par descriptif, titre}
+			{id_groupe}><li><BOUCLE_larub_idf(RUBRIQUES){id_mot}><a href="#URL_RUBRIQUE">[(#_lieux:TITRE|replace{lieux\d*})]</a></BOUCLE_larub_idf></li>
+				</BOUCLE_lieux>
+			</B_lieux>
+		</div>
+	</ul>
+</li>
+</BOUCLE_alphabt>
+</ul></li>

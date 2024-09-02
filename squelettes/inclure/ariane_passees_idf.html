@@ -1,0 +1,14 @@
+[(#REM) fil d'Ariane pr une rubrique situé dans une rubrique idf Passée, on veut afficher accueil / idf / passées]
+<div class="ariane">
+				<ul>
+					<li>
+						<a href="#URL_SITE_SPIP"><:accueil:></a>
+					</li>
+					<li>
+						<BOUCLE_IDF(RUBRIQUES){id_rubrique=335}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_IDF>
+					</li>
+					<li>
+						<BOUCLE_IDF_PASSEES(RUBRIQUES){id_rubrique=385}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_IDF_PASSEES>
+					</li>
+				</ul>
+			</div>

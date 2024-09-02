@@ -1,0 +1,20 @@
+<BOUCLE_incluse(RUBRIQUES){id_rubrique}><div class="resid_zone_sous_titres"><span class="resid_sous_titres"><:agenda:></span></div>
+            [(#REM)      JSE 20101026 ]
+            [(#REM)      agenda affiché seulement dans la rubrique 335 (Résidences IDF) ]
+            [(#REM)      et pas dans les sous-rubriques de celle-ci ]
+            [(#REM)      La boucle commence par la rubrique mère la 315 (Résidences) ]
+            <BOUCLE_agenda_toutes_rubriques(RUBRIQUES) {id_enfant} {id_rubrique=315}>
+                <BOUCLE_agenda_pour_seule_la_335(RUBRIQUES) {id_rubrique=335}>
+                    <div class="resid_agenda">
+                          <B_agenda>
+                          <BOUCLE_agenda(EVENEMENTS){age<0}{par date}{statut=publie}>
+                              <div  class="resid_agenda_zonetitre"><span class="resid_agenda_titre"><a href="#URL_ARTICLE">#TITRE</a></span></div>
+                          <div><span class="resid_agenda_lieu">#DESCRIPTIF</span></div>
+                          [<div class="resid_agenda_zone"><span class="resid_agenda_dates">(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})</span></div>]
+                          </BOUCLE_agenda>
+                          </B_agenda>
+                    </div>
+                <BOUCLE_agenda_pas_les_autres(RUBRIQUES) {id_rubrique!=335}></BOUCLE_agenda_pas_les_autres>
+                </BOUCLE_agenda_pour_seule_la_335>
+            </BOUCLE_agenda_toutes_rubriques>
+            </BOUCLE_incluse>

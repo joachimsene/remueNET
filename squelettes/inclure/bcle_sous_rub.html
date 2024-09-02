@@ -1,0 +1,60 @@
+[(#REM) sous-rub de la rubrique - ordre chrono si mot clé plus_ancien et là-dedans les 01. 02. d'abord ]
+					<BOUCLE_PLUSANCIEN(RUBRIQUES){id_rubrique}{titre_mot=plus_ancien}{0,1}>
+						<BOUCLE_RUBRIQUES_CHRONO_NUM(RUBRIQUES){id_parent}{!titre_mot in invisible}{titre==^([0-9]+\\.\\{1\\} +)}{par titre}{doublons a}>
+						  <div class="teaser cell">
+						  	<a href="#URL_RUBRIQUE" class="lien"></a>
+							<div class="description">
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte">
+									#DESCRIPTIF
+								</div>
+							</div>
+						  </div>
+						  </BOUCLE_RUBRIQUES_CHRONO_NUM>
+						  <BOUCLE_RUBRIQUES_CHRONO_DAT(RUBRIQUES){id_parent}{!titre_mot in invisible}{par date}{doublons a}>
+						  <div class="teaser cell">
+						  	<a href="#URL_RUBRIQUE" class="lien"></a>
+							<div class="description">
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte">
+									#DESCRIPTIF
+								</div>
+							</div>
+						  </div>
+						  </BOUCLE_RUBRIQUES_CHRONO_DAT>
+					</BOUCLE_PLUSANCIEN>
+					</B_PLUSANCIEN>
+					[(#REM) pas de mot-clé plus_ancien : 1 boucle NUM si présence de 01 et affichage trié d'eux-seuls
+					        puis 1 boucle DAT du reste par date inverse (attention au == pour l'expression régulière)
+						+ on affiche tout ]
+					<BOUCLE_RUBRIQUES_NUM(RUBRIQUES){id_parent}{!titre_mot in invisible}{titre==^([0-9]+\\.\\{1\\} +)}{par titre}{doublons a}>
+					  <div class="teaser cell">
+					  	<a href="#URL_RUBRIQUE" class="lien"></a>
+					  	<div class="description">
+							<div class="titre">
+								#TITRE
+							</div>
+							<div class="texte">
+								#DESCRIPTIF
+							</div>
+						</div>
+					  </div>
+					  </BOUCLE_RUBRIQUES_NUM>
+					  <BOUCLE_RUBRIQUES_DAT(RUBRIQUES){id_parent}{!titre_mot in invisible}{!par date}{doublons a}>
+					  <div class="teaser cell">
+					  	<a href="#URL_RUBRIQUE" class="lien"></a>
+					  	<div class="description">
+							<div class="titre">
+								#TITRE
+							</div>
+							<div class="texte">
+								#DESCRIPTIF
+							</div>
+						</div>
+					  </div>
+					  </BOUCLE_RUBRIQUES_DAT>
+					  <//B_PLUSANCIEN>

@@ -1,0 +1,36 @@
+[(#REM) Affiche une sous-rubrique en résumé à droite :
+	titre
+	descriptif
+	4 articles max classés selon les règles de classemt
+	liens tous les articles le cas échéant
+]
+<BOUCLE_getrub(RUBRIQUES){id_rubrique}{!titre_mot=invisible}>
+<div class="sous_rubrique">
+  						<div class="titre">
+  							<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+  							<div class="texte">
+								#DESCRIPTIF
+							</div>
+  						</div>
+  						<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 masonry">
+							[(#INCLURE{fond=inclure/bcle_4articles_rub,id_rubrique,env})]
+  						</div>
+						[(#REM) boucle test si plus de 4 articles dans TOUTE la branche]
+						<BOUCLE_ARTICLES_SR_PLUSARTICLES(ARTICLES){branche}{0,5}>
+						</BOUCLE_ARTICLES_SR_PLUSARTICLES>
+							<!-- #ID_RUBRIQUE possède #TOTAL_BOUCLE article(s) -->
+							[(#TOTAL_BOUCLE|>{4}|oui) 
+							<!-- parce qu'il y a des articles en + -->
+							<div class="plus"><a href="#URL_RUBRIQUE"><:tous_les_articles:></a></div>
+							]
+							[(#REM) si pas plus de 4 articles... est-ce qu'il y a des sous-sous-rubriques ?]
+							#SET{testsr,#TOTAL_BOUCLE}
+							<BOUCLE_test_nb_art(CONDITION){si #GET{testsr}|<{4}}>
+								<BOUCLE_ARTICLES_SR_AUTRES_SSR(RUBRIQUES){id_parent}{!titre_mot=invisible}{0,1}>
+									<!-- parce qu'il y a des sous-rubriques -->
+									<div class="plus"><a href="#_SOUS_RUBRIQUES:URL_RUBRIQUE"><:tous_les_articles:></a></div>
+								</BOUCLE_ARTICLES_SR_AUTRES_SSR>
+							</BOUCLE_test_nb_art>
+						</B_ARTICLES_SR_PLUSARTICLES>
+					</div>
+</BOUCLE_getrub>

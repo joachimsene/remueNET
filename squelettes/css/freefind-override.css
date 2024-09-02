@@ -1,0 +1,118 @@
+/* Copyright (c) 2013-2018 FreeFind.com. All Rights Reserved.
+FreeFind Overlay, Version 1.0.08
+*/
+/*
+CHANGELOG:
+------------------------------------------------------------------------------
+1.0.02	2017.05.18	To fix not appearing above all user divs, added: .ffse-ov0-div { position:relative; }
+1.0.03	2018.02.06	Added ffse-ov0-close and ffse-ov0-close:hover  to support new close "X"
+1.0.04	2018.02.07	Fix for quirks mode, 1.0.02 made results appear at end of page
+1.0.05	2018.02.08	Changed styling to support close char from "&#x274c;" to "x" due to WordPress changing former to emoji image!
+1.0.06	2018.02.27	Change min-width in ffse-ov0-ifd and added some media types to change width according to window size
+1.0.07	2018.03.26	Fix to JS only
+1.0.08	2018.04.10	Fix to JS only
+------------------------------------------------------------------------------
+*/
+.search-results i{
+	color: #4F4F4F;
+}
+.ffse-ov0-ifd {
+	/* user modifiable styles -- start */
+	left:10%;
+	top:7%;
+	width:80%;
+	height:85%;
+	min-width:300px;
+	min-height:240px;
+	border:0px;
+	box-shadow:rgba(0,0,0,0.35) 1px 1px 4px 3px;
+	border-radius:0.2em;
+	-webkit-transition:opacity 400ms ease-out;
+	-moz-transition:opacity 400ms ease-out;
+	-o-transition:opacity 400ms ease-out;
+	-ms-transition:opacity 400ms ease-out;
+	transition:opacity 400ms ease-out;
+	/* user modifiable styles -- end */
+	position:fixed;
+	-webkit-overflow-scrolling:touch;
+	overflow-scrolling:touch;
+	overflow:auto;
+	opacity:0;
+	z-index:16777271;
+}
+.ffse-ov0-ifd a {
+	color: #4F4F4F;
+}
+@media (max-width:475px) {
+	.ffse-ov0-ifd {
+		width:90% !important;
+		left:5% !important;
+	}
+}
+@media (max-width:370px) {
+	.ffse-ov0-ifd {
+		width:96% !important;
+		left:2% !important;
+	}
+}
+
+.ffse-ov0-cover {
+	/* user modifiable styles -- start */
+	background:#646464;
+	_background:#646464;
+	-webkit-transition:opacity 400ms ease-out;
+	-moz-transition:opacity 400ms ease-out;
+	-o-transition:opacity 400ms ease-out;
+	-ms-transition:opacity 400ms ease-out;
+	transition:opacity 400ms ease-out;
+	/* user modifiable styles -- end */
+	position:fixed;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	left:0px;
+	opacity:0;
+	z-index:16777270;
+}
+.ffse-ov0-cover-trans {
+	/* user modifiable styles -- start */
+	opacity:0.64;
+	filter:alpha(opacity=64);
+	/* user modifiable styles -- end */
+}
+.ffse-ov0-div {
+	padding:0px;
+	margin:0px;
+	border:0px;
+}
+.ffse-ov0-ifr {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	padding:0px;
+	background:#fff;
+	border:0px;
+	border-radius:0.2em;
+}
+.ffse-ov0-ifd-trans {
+	opacity:1;
+}
+.ffse-ov0-close {
+	/* user modifiable styles -- start */
+	font-size:18pt;
+	color:#f4f4f4;
+	/* user modifiable styles -- end */
+	position:absolute;
+	right:0;
+	padding:0.1em 0.67em 0.25em 0.25em;
+	font-family:sans-serif;
+	font-variant:small-caps;
+}
+.ffse-ov0-close:hover {
+	/* user modifiable styles -- start */
+	color:#ffffff;
+	/* user modifiable styles -- end */
+	cursor:pointer;
+}

@@ -1,0 +1,23 @@
+<B_BLOG_AUTEURS>
+<li>
+		  						<a href="#"><:pages_auteurs:></a>
+		  						<ul class="sous-menu">
+								<BOUCLE_BLOG_AUTEURS(RUBRIQUES) {id_parent=198} {!par date} {0,5}>
+			  						<li [ class="(#EXPOSE)"]>
+				  						<a href="#URL_RUBRIQUE">#TITRE</a>
+				  					</li>
+								</BOUCLE_BLOG_AUTEURS>
+<B_articles_test>			
+								<BOUCLE_invisibles(ARTICLES) {id_rubrique=198} {titre_mot in invisible, pas_en_une} {doublons}>
+								</BOUCLE_invisibles>
+								<BOUCLE_AUTEURS(ARTICLES) {id_rubrique=198} {!par date}{doublons}>
+			  						<li [ class="(#EXPOSE)"]>
+				  						<a href="#URL_RUBRIQUE">#TITRE</a>
+				  					</li>
+								</BOUCLE_AUTEURS>
+<BOUCLE_articles_test(ARTICLES) {id_rubrique}>
+</BOUCLE_articles_test>
+									<li><a href="#URL_RUBRIQUE{198}" class="toutes"><:toutes_les_pages_auteurs:></a></li>
+			  					</ul>
+		  					</li>
+</B_BLOG_AUTEURS>

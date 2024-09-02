@@ -1,0 +1,16 @@
+[(#REM) fil d'Ariane pr un article situé dans une rubrique idf, dont on veut afficher la rubrique parent qui le contient]
+<div class="ariane">
+				<ul>
+					<li>
+						<a href="#URL_SITE_SPIP"><:accueil:></a>
+					</li>
+					<li>
+						<BOUCLE_IDF(RUBRIQUES){id_rubrique=335}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_IDF>
+					</li>
+					<BOUCLE_IDF_COURANTE(RUBRIQUES){!id_rubrique in 335}{id_rubrique}>
+					<li>
+						<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+					</li>
+					</BOUCLE_IDF_COURANTE>
+				</ul>
+			</div>

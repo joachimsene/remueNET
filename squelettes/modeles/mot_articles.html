@@ -1,0 +1,39 @@
+[(#REM)
+	Liste les articles d'un mot-cle pour les n derniers jours
+	<template><mot1|articles|age=n></template>
+][(#REM)
+	Modele <mot1|articles|age=n> : liste les articles d'un mot-cle pour les n derniers jours
+	#MODELE{mot_articles}
+    
+	Pour la notation rel="tag" voir
+	<http://microformats.org/wiki/rel-tag-fr>
+]
+        <style>
+            td.content p {
+                margin-top: 0px;
+                margin-bottom: 0px;}
+            }
+        </style>
+<B_articles>
+<div class="menu"[ style='float:(#ENV{align}|match{left|right});']>
+    <tr>
+      <td class="wrapper" style="vertical-align: top; box-sizing: border-box;">
+        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
+          <tr>
+            <td class="content" style="vertical-align: top;">
+              <!-- START CONTENU ARTICLES -->
+	           <BOUCLE_mots(MOTS) {id_mot}>
+	           <b>&#x25cf;&nbsp;#TITRE</b><br />
+	           </BOUCLE_mots>
+	               <BOUCLE_articles(ARTICLES) {id_mot}{!titre_mot = 'exclure_lettre'}{!par date}{age < #ENV{age}}>
+			         <br /><a href="[(#URL_ARTICLE|url_absolue)]" style="color:#000;padding-left:0px;text-decoration : underline;">#TITRE</a><br />
+			         [(#DESCRIPTIF)]
+	               </BOUCLE_articles><br />
+              <!-- END CONTENU ARTICLES -->
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</div>
+</B_articles>

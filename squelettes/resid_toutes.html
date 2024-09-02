@@ -1,0 +1,104 @@
+<BOUCLE_PRINCIPALE(RUBRIQUES){id_rubrique=335}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inclure/head} />
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+</head>
+<body class="liste_thematiques_idf">
+  	<div id="main" class="grid-x">
+  		<div id="header" class="cell small-12 large-2">
+  			<div class="logo">
+  				<a href="#URL_SITE_SPIP" id="type"><span class="fixe">r</span><span class="write"></span></a>
+  				<div class="hamburger hide-for-large"></div>
+  			</div>
+  			[(#REM) --------------------------------------------------- GAUCHE -------- ]
+  			<div class="inner-header">
+  				<div class="headerscroll">
+					<div class="idf_titre">
+						<a href="#URL_RUBRIQUE{335}" class="titre">
+							<span>Programme </span>
+							<span>de résidences </span>
+							<span>d'écrivains </span>
+						</a>
+						<a href="https://www.iledefrance.fr/aides-services/programme-regional-de-residences-d-ecrivains" target="_blank" class="logo">
+						</a>
+					</div>
+		  			<div class="main-menu">
+		  				<ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false" data-slide-speed="0">
+							<INCLURE{fond=inclure/blogs_auteurs_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/lieux_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/annees_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/infolettre_idf,env} />
+		  				</ul>
+		  			</div>
+				</div>
+				<INCLURE{fond=inclure/pied,env}/>
+			</div>
+		</div>
+  		<div id="content" class="cell small-12 large-10 large-offset-2 xlarge-8 xlarge-offset-3">
+			<div class="ariane">
+				<ul>
+					<li>
+						<a href="#URL_SITE_SPIP"><:accueil:></a>
+					</li>
+					<li>
+						<a href="#URL_RUBRIQUE{335}">résidences IDF</a>
+					</li>
+				</ul>
+			</div>
+  			<div class="titre">
+  				<h1><:residences_en_cours:></h1>
+  			</div>
+  			<div class="rubrique_content grid-x grid-margin-x">
+  				<div class="all cell small-12">
+  					<div class="entete grid-x grid-margin-x">
+  						<div class="carte cell small-12 large-8">
+							<div class="responsive-embed widescreen">
+								<iframe src="https://www.google.com/maps/d/embed?mid=1N3aRgfxf2qQo9uGFCByJnEUael8&z=8" width="600" height="600"></iframe>
+							</div>
+						</div>
+						<div class="cell small-12 large-4 show-for-large gris">
+						</div>
+  					</div>
+					<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 masonry">
+					<BOUCLE_THEMA(RUBRIQUES){id_parent}{!id_rubrique in 346, 385, 415}{par titre}>
+					  <div class="teaser cell">
+					  	<a href="#URL_RUBRIQUE" class="lien"></a>
+					  	<div class="description grid-x">
+							<div class="photo cell small-12 medium-4">
+								[(#LOGO_RUBRIQUE|image_recadre{1:1,'-','center top'})]
+							</div>
+							<div class="contenu cell small-12 medium-8">
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte">
+									#DESCRIPTIF
+								</div>
+							</div>
+						</div>
+					  </div>
+					  </BOUCLE_THEMA>
+					</div>
+					
+  				</div>
+  				
+  		</div>
+  	</div>
+  	<INCLURE{fond=inclure/footer} />
+
+  </body>
+</html>
+
+    
+</body>
+</html>
+</BOUCLE_PRINCIPALE>

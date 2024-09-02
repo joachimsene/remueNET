@@ -1,0 +1,11 @@
+[(#REM) fil d'Ariane pr une rubrique sous idf qu'on veut indiquer simplement sous la rubrique IDF]
+<div class="ariane">
+				<ul>
+					<li>
+						<a href="#URL_SITE_SPIP"><:accueil:></a>
+					</li>
+					<li>
+						<BOUCLE_IDF(RUBRIQUES){id_rubrique=335}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_IDF>
+					</li>
+				</ul>
+			</div>

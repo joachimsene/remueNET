@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+<body class="recherche">
+<div id="main" class="grid-x">
+  		<div id="header" class="cell small-12 large-2">
+  			<div class="logo">
+  				<a href="#URL_SITE_SPIP" id="type"><span class="fixe">r</span><span class="write"></span></a>
+  				<div class="hamburger hide-for-large"></div>
+  			</div>
+  			<div class="inner-header">
+  				<div class="headerscroll">
+					<INCLURE{fond=inclure/super_breve,env} />
+					<div class="main-menu">
+						<ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false" data-slide-speed="0">
+							<INCLURE{fond=inclure/blogs_auteurs,id_rubrique,env} />
+							<INCLURE{fond=inclure/blogs_themes,id_rubrique,env} />
+							<INCLURE{fond=inclure/recherche_alphabet,env} />
+							<INCLURE{fond=inclure/residences_idf,env} />
+							<INCLURE{fond=inclure/nous_ecrire,env} />
+							<INCLURE{fond=inclure/adhesion,env} />
+							<INCLURE{fond=inclure/infolettre,env} />
+							<INCLURE{fond=inclure/recherche,env} />
+		  				</ul>
+					</div>
+				</div>
+		  		<INCLURE{fond=inclure/pied,env}/>
+  			</div>
+		</div>
+  		[(#REM) ------------------------------------------------------------ CONTENT ---------- ]
+  		<div id="content" class="cell small-12 large-10 large-offset-2 xlarge-8 xlarge-offset-3">
+			<div class="ariane">
+				<ul>
+					<li>
+						<a href="#URL_SITE_SPIP"><:accueil:></a>
+					</li>
+				</ul>
+			</div>
+  			<div class="titre">
+  				<h1>recherche</h1>
+  			</div>
+			<div class="rubrique_content grid-x grid-margin-x">
+				<div class="all cell small-12">
+					<div class="rubrique_content_inner">
+						<div class="text recherche">		
+						<INCLURE{fond=inclure/recherche,env}/>
+						
+						[<p class="texte">
+							<h2><:resultats_recherche:></h2>
+							<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+						</p>]
+						</div>
+					</div>
+
+				<B_ARTICLES>
+				<div class="sous_rubrique">
+					<div class="titre">
+						<h2><:articles:> (#GRAND_TOTAL)</h2>
+					</div>
+					<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 masonry">
+						<BOUCLE_ARTICLES(ARTICLES){recherche}{!par points} {0,8}>
+						  <div class="teaser cell">
+						  	<a href="#URL_ARTICLE" class="lien"></a>
+							<div class="description">
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte">
+									#DESCRIPTIF
+								</div>
+								<INCLURE{fond=inclure/tags_article,id_article,env}>
+							</div>
+						  </div>
+						  </BOUCLE_ARTICLES>
+					</div>
+				</div>
+				</B_ARTICLES>
+				<B_RUBRIQUES>
+				<div class="sous_rubrique">
+					<div class="titre">
+						<h2><:rubriques:> (#GRAND_TOTAL)</h2>
+					</div>
+					<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 masonry">
+						<BOUCLE_RUBRIQUES(RUBRIQUES){recherche}{!par points} {0,8}>
+						  <div class="teaser cell">
+						  	<a href="#URL_RUBRIQUE" class="lien"></a>
+							<div class="description">
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte">
+									#DESCRIPTIF
+								</div>
+								<INCLURE{fond=inclure/tags_rubrique,id_rubrique,env}>
+							</div>
+						  </div>
+						</BOUCLE_RUBRIQUES>
+					</div>
+				</div>
+				</B_RUBRIQUES>
+				<B_MOTS>
+				<div class="sous_rubrique">
+					<div class="titre">
+						<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+					</div>
+					<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 masonry">
+					<BOUCLE_MOTS(MOTS){recherche}{!par points} {0,8}>
+					  <div class="teaser cell">
+					  	<a href="#URL_MOT" class="lien"></a>
+						<div class="description">
+							<div class="titre">
+								#TITRE
+							</div>
+							<div class="texte">
+								#DESCRIPTIF
+							</div>
+						</div>
+					  </div>
+					  </BOUCLE_MOTS>
+					</div>
+				</div>
+				</B_MOTS>
+				<B_BREVES>
+				<div class="sous_rubrique">
+					<div class="titre">
+						<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+					</div>
+					<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 masonry">
+					<BOUCLE_BREVES(BREVES){recherche}{!par points} {0,8}>
+					  <div class="teaser cell">
+					  	<a href="#URL_BREVE" class="lien"></a>
+						<div class="description">
+							<div class="titre">
+								#TITRE
+							</div>
+							<div class="texte">
+								#DESCRIPTIF
+							</div>
+						</div>
+					  </div>
+					  </BOUCLE_BREVES>
+					</div>
+				</div>
+				</B_BREVES>
+			</div>
+		</div>
+		</div>
+ </div>
+<INCLURE{fond=inclure/footer} />
+
+</body>	
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# But don't ignore these directories
+!/squelettes/
+!/squelettes/**
+
+# Don't ignore .gitignore
+!.gitignore

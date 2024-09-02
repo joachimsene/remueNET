@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#NOM_SITE_SPIP|textebrut)][ - (#SLOGAN_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+<body class="accueil">
+<div id="main" class="grid-x">
+  		<div id="header" class="cell small-12 large-2">
+  			<div class="logo">
+  				<a href="#URL_SITE_SPIP" id="type"><span class="fixe">r</span><span class="write"></span></a>
+  				<div class="hamburger hide-for-large"></div>
+  			</div>
+			[(#REM) --------------------------------------------------- GAUCHE -------- ]
+  			<div class="inner-header">
+  				<div class="headerscroll">
+					<INCLURE{fond=inclure/super_breve,env} />
+					<div class="main-menu">
+						<ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false" data-slide-speed="0">
+							<INCLURE{fond=inclure/blogs_auteurs,env} />
+							<INCLURE{fond=inclure/blogs_themes,env} />
+							<INCLURE{fond=inclure/recherche_alphabet,env} />
+							<INCLURE{fond=inclure/residences_idf,env} />
+							<INCLURE{fond=inclure/nous_ecrire,env} />
+							<INCLURE{fond=inclure/adhesion,env} />
+							<INCLURE{fond=inclure/infolettre,env} />
+							<INCLURE{fond=inclure/recherche,env} />
+						</ul>
+					</div>
+				</div>
+		  		<INCLURE{fond=inclure/pied,env}/>
+  			</div>
+		</div>
+		
+  		[(#REM) ------------------------------------------------------------ AU MILIEU ---------- ]
+		<div id="content" class="cell small-12 large-8 large-offset-2 xlarge-6 xlarge-offset-3">
+			<div class="ariane">
+  			</div>
+  			<div class="titre">
+  			</div>
+			[(#REM) ---------------------------------------- CAROUSEL -- ] 
+			<div class="orbit" role="region" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+				<button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+				<button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+				<ul class="orbit-container">
+					<BOUCLE_SUPER_UNE(RUBRIQUES){titre_mot=super_une}{0,1}{!par date}>
+					<BOUCLE_CAROUSEL(ARTICLES){id_rubrique}{par hasard}{!par date}{!titre_mot in pas_en_une, invisible}{logo}>
+					<li class="orbit-slide">
+						<div class="superteaser grid-x">
+							<a href="#URL_ARTICLE" class="lien"></a>
+							<div class="cell medium-6 description">
+								<div class="inner">
+									<div class="titre">
+										#TITRE
+									</div>
+									<div class="texte">
+										#DESCRIPTIF
+									</div>
+								</div>
+							</div>[(#REM) seul le sommaire utilise le ratio de 2 par 1 pour les images ici et ligne 76]
+							[(#INCLURE{fond=inclure/logodoc_art21,id_article,env})]
+						</div>
+					</li>
+					</BOUCLE_CAROUSEL></BOUCLE_SUPER_UNE>
+				</ul>
+			</div>
+			[(#REM) ---------------------------------------- UNE -- ] 
+  			<div class="liste grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 xlarge-up-4 masonry">			
+			<INCLURE{fond=inclure/une_sommaire21,env}/>
+			</div>
+  		</div>
+ 
+		[(#REM) --------------------------------------------------- A DROITE ------------- ]
+  		<div id="sidebar" class="cell small-12 large-2 large-offset-1">
+
+			[(#REM) s'il y a des articles en brèves à afficher on affiche 3 relire]
+			[(#REM) si pas d'articles en brèves à afficher on affiche 6 relire]
+			
+				[(#REM) sous Breves, tous les articles valables jusqu'à aujourdhui (date de rédaction antérieure à tester) ]
+				<BOUCLE_NOTER(RUBRIQUES) {id_rubrique=8}>
+					
+					<B_annonces>
+					<div class="bloc noter">
+						<div class="label">
+							noter
+						</div>
+						<div class="liste">
+						<BOUCLE_annonces(ARTICLES){branche}{date_redac!=0000-00-00 00:00:00}{age_redac<=0}{!par date}{0,5}>
+						
+							<div class="teaser">
+								<a href="#URL_ARTICLE" class="lien"></a>
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="texte"> 
+									#DESCRIPTIF
+								</div>
+							</div>
+						</BOUCLE_annonces>
+						</div>
+					</div>
+					<div class="bloc relire">
+						<div class="label">
+							relire 
+						</div>
+						<div class="liste">
+							<BOUCLE_RELIRE_1(ARTICLES){titre_mot=archive}{par hasard}{0,3}>
+							<div class="teaser">
+								<a href="#URL_ARTICLE" class="lien"></a>
+								<div class="titre">
+										#TITRE
+									</div>
+									<div class="texte">
+										#DESCRIPTIF
+									</div>
+							</div>
+							</BOUCLE_RELIRE_1>
+						</div>
+					</div>
+					</B_annonces>
+						<div class="bloc relire">
+							<div class="label">
+								relire 
+							</div>
+							<div class="liste">
+								<BOUCLE_RELIRE_2(ARTICLES){titre_mot=archive}{par hasard}{0,6}>
+								<div class="teaser">
+									<a href="#URL_ARTICLE" class="lien"></a>
+									<div class="titre">
+											#TITRE
+										</div>
+										<div class="texte">
+											#DESCRIPTIF
+										</div>
+								</div>
+								</BOUCLE_RELIRE_2>
+							</div>
+						</div>
+					<//B_annonces>
+				</BOUCLE_NOTER>
+				</div>
+			</div> 
+  		</div>
+  	</div>
+<INCLURE{fond=inclure/footer} />
+
+</body>	
+</body>
+</html>

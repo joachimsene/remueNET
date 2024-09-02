@@ -1,0 +1,191 @@
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+
+[<meta property="og:image" content="(#LOGO_RUBRIQUE|abs_url|extraire_attribut{src})" />]
+[<meta property="og:description" content="(#INTRODUCTION|attribut_html)" />] 
+
+<meta name="twitter:title" content="[(#TITRE|couper{80}|textebrut)]">
+[<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@remue_net">
+<meta property="twitter:image" content="(#LOGO_RUBRIQUE|abs_url|extraire_attribut{src})" />]
+[<meta property="twitter:description" content="(#INTRODUCTION|attribut_html)" />] 
+
+[<link rel="canonical" href="(#URL_RUBRIQUE|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+<body class="idf_accueil">
+  	<div id="main" class="grid-x">
+  		<div id="header" class="cell small-12 large-2">
+  			<div class="logo">
+  				<a href="#URL_SITE_SPIP" id="type"><span class="fixe">r</span><span class="write"></span></a>
+  				<div class="hamburger hide-for-large"></div>
+  			</div>
+			[(#REM) --------------------------------------------------- GAUCHE -------- ]
+  			<div class="inner-header">
+  				<div class="headerscroll">
+					<div class="idf_titre">
+						<a href="#URL_RUBRIQUE{335}" class="titre">
+							<span>Programme </span>
+							<span>de résidences </span>
+							<span>d'écrivains </span>
+						</a>
+						<a href="https://www.iledefrance.fr/aides-services/programme-regional-de-residences-d-ecrivains" target="_blank" class="logo">
+						</a>
+					</div>
+		  			<div class="main-menu">
+		  				<ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false" data-slide-speed="0">
+							<INCLURE{fond=inclure/blogs_auteurs_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/lieux_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/annees_idf,id_rubrique,env} />
+							<INCLURE{fond=inclure/infolettre_idf,env} />
+		  				</ul>
+		  			</div>
+				</div>
+				<INCLURE{fond=inclure/pied,env}/>
+			</div>
+		</div>
+  		[(#REM) ------------------------------------------------------------ CONTENT ---------- ]
+		<d	iv id="content" class="cell small-12 large-8 large-offset-2 xlarge-6 xlarge-offset-3">
+			<div class="ariane">
+				<ul>
+					<li>
+						<a href="#URL_SITE_SPIP">accueil</a>
+					</li>
+				</ul>
+			</div>
+  			<div class="titre">
+  			</div>
+			[(#REM) ---------------------------------------- CAROUSEL -- ] 
+			<div class="orbit" role="region" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+				<button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+				<button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+				<ul class="orbit-container">
+				[(#REM) UN seul article ici ]
+					<BOUCLE_SUPER_UNE_IDF(RUBRIQUES){id_rubrique=335}>
+					[(#REM) l'article le  récent de toute la branche]
+					<BOUCLE_CAROUSEL(ARTICLES){branche}{!par date}{par titre}{!titre_mot in invisible, idf_pas_en_une}{logo}{0,1}{doublons}>
+					<li class="orbit-slide">
+						<div class="superteaser grid-x">
+							<a href="#URL_ARTICLE" class="lien"></a>
+							<div class="cell medium-6 description">
+								<div class="inner">
+									<div class="titre">
+										#TITRE
+									</div>
+									<div class="texte">
+										#DESCRIPTIF
+									</div>
+								</div>
+							</div>
+							<INCLURE{fond=inclure/logodoc_art,id_article,env}>
+						</div>
+					</li>
+					</BOUCLE_CAROUSEL></BOUCLE_SUPER_UNE_IDF>
+				</ul>
+			</div>
+			[(#REM) ---------------------------------------- UNE -- ] 
+			<div class="content_accueil_idf grid-x grid-margin-x">
+				<div class="left cell small-12 medium-6 large-8">
+					[(#REM) articles du secteur complet triés par date]
+					<div class="liste grid-x grid-margin-x small-up-1 large-up-2 masonry">
+		  				<INCLURE{fond=inclure/une_idf,id_rubrique,env,doublons}/>
+					</div>
+				</div>
+				<div class="right cell small-12 medium-6 large-4">
+					<div class="bloc en_cours">
+						<div class="label">
+							résidences en cours 
+						</div>[(#REM) ----------- PLAN G MAPS-- ] 
+						<div class="contenu">
+							<div class="responsive-embed map">
+								<iframe src="https://www.google.com/maps/d/embed?mid=1N3aRgfxf2qQo9uGFCByJnEUael8&z=7" width="600" height="600"></iframe>
+							</div>
+						</div>
+						<div class="plus">
+							<a href="#URL_PAGE{resid_toutes}">toutes les résidences en cours</a>
+						</div>
+					</div>
+					<div class="bloc dossiers_thematiques">
+						<div class="label">
+							dossiers thématiques
+						</div>
+						<BOUCLE_RTH(RUBRIQUES){id_rubrique=415}>
+							<BOUCLE_TH(ARTICLES){branche}{logo}{!par date}{doublons}{0,1}>
+								<div class="teaser cell">
+									<a href="#URL_ARTICLE" class="lien"></a>
+									<div class="description">
+										<div class="titre">
+											#TITRE
+										</div>
+										<div class="texte">
+											#DESCRIPTIF
+										</div>
+									</div>
+									<INCLURE{fond=inclure/logodoc_art,id_article,env}>
+								</div>
+								<div class="plus">
+									<a href="#URL_RUBRIQUE{415}">tous les dossiers</a>
+								</div>
+							</BOUCLE_TH>
+						</BOUCLE_RTH>
+					</div>
+				</div>
+			</div>
+  		</div>
+ 
+		[(#REM) --------------------------------------------------- SIDE ------------- ]
+  		
+					<BOUCLE_agenda_toutes_rubriques(RUBRIQUES) {id_enfant} {id_rubrique=315}>
+						<BOUCLE_agenda_pour_seule_la_335(RUBRIQUES) {id_rubrique=335}>
+						<B_agenda>
+		<div id="sidebar" class="cell small-12 large-2 large-offset-1">
+					<div class="bloc agenda" id="blocagendaidf">
+						<div class="label">
+							agenda 
+						</div>
+						<div class="liste">
+							<BOUCLE_agenda(EVENEMENTS){age<0}{par date}{statut=publie}>
+								<div class="teaser cell">
+									<a href="#URL_ARTICLE" class="lien"></a>
+								  	<div class="description">
+								  		<div class="date">
+										[<div class="resid_agenda_zone">
+											<span class="resid_agenda_dates">	
+											(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})
+											</span>
+										</div>]
+										</div>
+										<div class="titre">
+											#TITRE
+										</div>
+										<div class="texte">
+											#DESCRIPTIF
+										</div>
+									</div>
+								  </div>
+							  </BOUCLE_agenda>
+						</div>
+					</div>
+				</div>
+                          </B_agenda>
+						</BOUCLE_agenda_pour_seule_la_335>
+					</BOUCLE_agenda_toutes_rubriques>
+  	</div>
+<INCLURE{fond=inclure/footer} />
+
+</body>	
+</body>
+</html>
+</BOUCLE_principale>

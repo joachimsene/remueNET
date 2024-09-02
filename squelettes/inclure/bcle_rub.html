@@ -1,0 +1,32 @@
+[(#CACHE{0})]<BOUCLE_PLUSANCIEN(RUBRIQUES){id_rubrique}{titre_mot=plus_ancien}{0,1}>
+		[(#REM) affichage des ss rubriques selon l'ordre chrono mais avec les numéros d'abord]
+		[(#REM) s'il y a des titres commençant par un numéro 01. 02. etc]
+		<BOUCLE_SOUS_RUBRIQUES_CHRONO_NUM(RUBRIQUES){id_parent}{!titre_mot=invisible}{titre==^([0-9]+\\.\\{1\\} +)}{par titre}{doublons}>
+			[(#REM) affichage standard d'une sous rubriques	
+					avec 4 articles max sans tags : 
+			]
+			<INCLURE{fond=inclure/sousrub_wart,id_rubrique,env}/>		
+			
+		</BOUCLE_SOUS_RUBRIQUES_CHRONO_NUM>
+		[(#REM) ensuite par date chrono   ]
+		<BOUCLE_SOUS_RUBRIQUES_CHRONO_DAT(RUBRIQUES){id_parent}{!titre_mot=invisible}{par date}{doublons}>
+		
+			<INCLURE{fond=inclure/sousrub_wart,id_rubrique,env}/>
+			
+		</BOUCLE_SOUS_RUBRIQUES_CHRONO_DAT>
+</BOUCLE_PLUSANCIEN>
+</B_PLUSANCIEN>
+[(#REM) pas de mot-clé plus_ancien --- même jeu mais par date inverse après les numéros]
+	<BOUCLE_PAPPLUSANCIEN(RUBRIQUES){id_rubrique}>
+		<BOUCLE_SOUS_RUBRIQUES_NUM(RUBRIQUES){id_parent}{!titre_mot=invisible}{titre==^([0-9]+\\.\\{1\\} +)}{par titre}{doublons}>
+		
+			<INCLURE{fond=inclure/sousrub_wart,id_rubrique,env}/>		
+				
+		</BOUCLE_SOUS_RUBRIQUES_NUM>
+		<BOUCLE_SOUS_RUBRIQUES_DAT(RUBRIQUES){id_parent}{!titre_mot=invisible}{!par date}{doublons}>
+		
+			<INCLURE{fond=inclure/sousrub_wart,id_rubrique,env}/>
+			
+		</BOUCLE_SOUS_RUBRIQUES_DAT>
+	</BOUCLE_PAPPLUSANCIEN>
+<//B_PLUSANCIEN>

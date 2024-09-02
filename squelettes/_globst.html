@@ -1,0 +1,76 @@
+[(#REM)
+    Pas de cache pour le sommaire hasard
+]#CACHE{0}<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>#NOM_SITE_SPIP : statistiques globales</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+	<meta name="description" content="Page de résumé général" />
+	<link rel="stylesheet" media="screen" href="#DOSSIER_SQUELETTE/web.css" type="text/css" />
+	<link rel="stylesheet" media="print" href="#DOSSIER_SQUELETTE/print.css" type="text/css" />
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <script type="text/javascript" src="#DOSSIER_SQUELETTE/jquery-1.4.3.min.js"></script>
+        <script src="#DOSSIER_SQUELETTE/remue.js" type="text/javascript"></script>
+
+</head>
+<body>
+#NOM_SITE_SPIP compte&nbsp;:<br/>
+<BOUCLE_A(ARTICLES) {tout}>
+</BOUCLE_A>
+   #TOTAL_BOUCLE articles
+</B_A>
+<br/>
+(Dont Résidence Idf : 
+<BOUCLE_AidfR(RUBRIQUES){id_rubrique=335}{0,1}>
+<BOUCLE_Aidf(ARTICLES) {branche}>
+</BOUCLE_Aidf>
+   #TOTAL_BOUCLE articles
+</B_Aidf>)
+</BOUCLE_AidfR>
+<br/>
+<BOUCLE_R(RUBRIQUES) {tout}>
+</BOUCLE_R>
+   #TOTAL_BOUCLE rubriques
+</B_R>
+<br/>
+(Dont Résidence Idf : 
+<BOUCLE_AidfR2(RUBRIQUES){id_rubrique=335}{0,1}>
+<BOUCLE_Aidf2(RUBRIQUES) {branche}>
+</BOUCLE_Aidf2>
+   #TOTAL_BOUCLE rubriques
+</B_Aidf2>)
+</BOUCLE_AidfR2>
+
+<br/><br/>
+Et aussi&nbsp;:
+<br/>
+<BOUCLE_AU(AUTEURS) {tout}>
+</BOUCLE_AU>
+   #TOTAL_BOUCLE auteurs
+</B_AU>
+<br/>
+Autant de pages auxquelles il faut ajouter la page de sommaire, les deux pages de nuages de tags, les
+428 fichiers et documents du dossier <a href="http://remue.net/cont">cont</a>,
+ceux du dossier <a href="http://remue.net/asso/">asso</a>,
+l'étrange <a href="http://remue.net/ARG">ARG</a>,
+les <a href="http://remue.net/atel">ateliers</a>
+<a href="http://remue.net/bulletin/">bulletins</a>,
+<a href="http://remue.net/DH/">DH</a>,
+<a href="http://remue.net/JMB/">JMB</a>,
+<a href="http://remue.net/lire/">lire</a>,
+<a href="http://remue.net/litt/">litt</a> qui mène ailleurs mais des pages restent accessibles (<a href="http://remue.net/litt/aubigne.html">exemple</a>),
+<a href="http://remue.net/PR">PR</a> (tout cassé mais là encore, des <a href="http://remue.net/PR/LDH_2004.html">pages</a>)
+<a href="http://remue.net/prosexpr/">prosexpr</a>,
+<a href="http://remue.net/RK/">RK</a>,
+<a href="http://remue.net/revue/">revue</a>,
+<a href="http://remue.net/SR/">SR</a>,
+<a href="http://remue.net/theatre/">theâtre</a>,
+<br/>
+<br/>
+<br/>
+Bref <a href="http://www.google.fr/search?q=site:remue.net">Google compte <em>à ce jour</em> un nombre total de…</a>
+<br/>
+</body>
+</html>

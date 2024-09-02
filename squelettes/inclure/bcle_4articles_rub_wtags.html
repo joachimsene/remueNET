@@ -1,0 +1,114 @@
+[(#REM) articles de la rubrique 4 premiers - ordre chrono si mot clé plus_ancien et là-dedans les 01. 02. d'abord 
+][(#REM) on va limiter
+					à 4 le nombre d'articles affiché par les 3 boucles successivmt grâce à ce compteur : ]
+#SET{nb_articles,0}
+			<BOUCLE_PLUSANCIEN(RUBRIQUES){id_rubrique}{titre_mot=plus_ancien}{0,1}>
+				<BOUCLE_ARTICLES_CHRONO_NUM(ARTICLES){id_rubrique}{!titre_mot in invisible}{titre==^([0-9]+\\.\\{1\\} +)}{par titre}{doublons a}{0,4}><!-- cpt article n 
+											#SET{nb_articles,#ADDITION{#GET{nb_articles},1}}
+											= #GET{nb_articles}
+											-->
+				  <div class="teaser cell">
+				  	<a href="#URL_ARTICLE" class="lien"></a>
+					<div class="description">
+						<div class="titre">
+							#TITRE
+						</div>
+						<div class="texte">
+							#DESCRIPTIF
+						</div>
+						<INCLURE{fond=inclure/tags_article,id_article,env}>
+					</div>
+				  </div>
+				  </BOUCLE_ARTICLES_CHRONO_NUM>
+				  <BOUCLE_ARTICLES_CHRONO_DAT(ARTICLES){id_rubrique}{!titre_mot in invisible}{par date}{doublons a}{0,4}><!-- cpt article n 
+											#SET{nb_articles,#ADDITION{#GET{nb_articles},1}}
+											= #GET{nb_articles}
+											-->
+				  <div class="teaser cell is_outnumbered_#GET{nb_articles}">
+				  	<a href="#URL_ARTICLE" class="lien"></a>
+					<div class="description">
+						<div class="titre">
+							#TITRE
+						</div>
+						<div class="texte">
+							#DESCRIPTIF
+						</div>
+						<INCLURE{fond=inclure/tags_article,id_article,env}>
+					</div>
+				  </div>
+				  </BOUCLE_ARTICLES_CHRONO_DAT>
+			</BOUCLE_PLUSANCIEN>
+			</B_PLUSANCIEN>
+			[(#REM) pas de mot-clé plus_ancien : 1 boucle NUM si présence de 01 et affichage trié d'eux-seuls
+		 	        puis 1 boucle DAT du reste par date inverse (attention au == pour l'expression régulière) ]
+		   #SET{nb_art_numeros,0}
+		   <!-- nb_art_numerotés  = #GET{nb_art_numeros} -->
+			<BOUCLE_ARTICLES_NUM(ARTICLES){id_rubrique}{!titre_mot in invisible}{titre==^([0-9]+\\.\\{1\\} +)}{par titre}{doublons a}{0,4}><!-- cpt article n 
+											#SET{nb_articles,#ADDITION{#GET{nb_articles},1}}
+											= #GET{nb_articles}
+											-->
+			  <div class="teaser cell is_outnumbered_#GET{nb_articles}">
+			  	<a href="#URL_ARTICLE" class="lien"></a>
+			  	<div class="description">
+					<div class="titre">
+						#TITRE
+					</div>
+					<div class="texte">
+						#DESCRIPTIF
+					</div>
+					<INCLURE{fond=inclure/tags_article,id_article,env}>
+				</div>
+			  </div>
+			  </BOUCLE_ARTICLES_NUM>
+			  #SET{nb_art_numeros,#GET{nb_articles}}
+			<!-- cpt nb_art_numerotés  = #GET{nb_art_numeros} -->
+			  </B_ARTICLES_NUM>
+			  #SET{reste, #SOUSTRACTION{4,#GET{nb_art_numeros}}}					
+				<BOUCLE_test_reste(CONDITION){si #GET{reste}|<{0}}>
+					#SET{reste, 0}
+				</BOUCLE_test_reste>
+				<!-- then reste  = #GET{reste} -->
+
+			  <BOUCLE_ARTICLES_DAT(ARTICLES){id_rubrique}{!titre_mot in invisible}{!par date}{doublons a}{0,#GET{reste}}>
+			  <div class="teaser cell"><!-- cpt article n 
+											#SET{nb_articles,#ADDITION{#GET{nb_articles},1}}
+											= #GET{nb_articles}
+											-->
+			  	<a href="#URL_ARTICLE" class="lien"></a>
+			  	<div class="description">
+					<div class="titre">
+						#TITRE
+					</div>
+					<div class="texte">
+						#DESCRIPTIF
+					</div>
+					<INCLURE{fond=inclure/tags_article,id_article,env}>
+				</div>
+			  </div>
+			  </BOUCLE_ARTICLES_DAT>
+			  <//B_PLUSANCIEN>
+			  
+			  [(#REM) S'il reste de la place : on fouille dans les sous rubriques éventuelles ]
+			  <!-- reste #GET{nb_articles} -->
+				#SET{nb_art_numeros,#GET{nb_articles}}
+				<!-- cpt nb_art_numerotés  = #GET{nb_art_numeros} -->
+				#SET{reste, #SOUSTRACTION{4,#GET{nb_art_numeros}}}
+				<BOUCLE_test_reste2(CONDITION){si #GET{reste}|<{0}}>
+					#SET{reste, 0}
+				</BOUCLE_test_reste2>
+				<!-- then reste  = #GET{reste} -->
+
+			  <BOUCLE_ARTICLES_SOUSRUB(ARTICLES){branche}{!titre_mot in invisible}{!par date}{doublons a}{0,#GET{reste}}>
+			  <div class="teaser cell">
+			  	<a href="#URL_ARTICLE" class="lien"></a>
+			  	<div class="description">
+					<div class="titre">
+						#TITRE
+					</div>
+					<div class="texte">
+						#DESCRIPTIF
+					</div>
+					<INCLURE{fond=inclure/tags_article,id_article,env}>
+				</div>
+			  </div>
+			  </BOUCLE_ARTICLES_SOUSRUB>

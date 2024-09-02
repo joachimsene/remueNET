@@ -1,0 +1,45 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+	<title>#NOM_SITE_SPIP :  test</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+	body {
+		font-size: 16px;
+		font-family: Courier;
+		background: #444;
+	}
+	.page {
+		font-size: 100%;
+		width: 600px;
+		margin:auto;
+		padding: 15px;
+		background-color: #FEFEFE;
+	}
+	</style>
+    </head>
+    <body>
+		<div class="page">
+		<p><strong>titres comme <em>01. titre</em>, <em>12. intitulé</em>...</strong><br>
+		   {titre==^([0-9]+[\.]\s+)}<p>
+		<ul>
+		<BOUCLE_cherche_1(ARTICLES){tout} {titre==^([0-9]+\.+\s+)}>
+			<li><a href="#URL_ARTICLE">#TITRE</a></li>
+		</BOUCLE_cherche_1>
+		</ul>
+		
+		<p><strong>titres comme <em>27 septembre</em>...</strong><br>
+		{titre==^([0-9]+[^\.]\s+.)}<p>
+		<ul>
+		<BOUCLE_cherche_2(ARTICLES){tout} {titre==^([0-9]+[^\.]\s+.)}>
+			<li><a href="#URL_ARTICLE">#TITRE</a></li>
+		</BOUCLE_cherche_2>
+		</ul>
+		
+		</div>
+</body>
+</html>

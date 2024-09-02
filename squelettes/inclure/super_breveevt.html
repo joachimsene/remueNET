@@ -1,0 +1,11 @@
+<BOUCLE_SB(ARTICLES){titre_mot=super_breve}{!par date}{0,1}>
+<BOUCLE_EVT(EVENEMENTS){id_article}{age_fin<=0}{par date_fin}>
+<div class="superbreve">
+	<a href="#URL_ARTICLE" class="lien"></a>
+		  				<div class="titre">
+		  					#TITRE
+		  				</div>
+		  				<div>
+		  					#DESCRIPTIF
+		  				</div>
+		  			</div></BOUCLE_EVT></BOUCLE_SB>
